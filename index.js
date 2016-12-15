@@ -1,34 +1,43 @@
 var engulmap = {
     "A":"ㅏ",
     "B":"ㅂ",
-    "C":"ㅊ",
+    "C":"ㄲ",
     "D":"ㄷ",
     "E":"ㅓ",
-    "F":"ㅉ",
+    "F":"ㅆ",
     "G":"ㄱ",
     "H":"ㅎ",
     "I":"ㅣ",
-    "J":"ㅈ",
+    "J":"ㅉ",
     "K":"ㅋ",
     "L":"ㄹ",
     "M":"ㅁ",
     "N":"ㄴ",
     "O":"ㅗ",
     "P":"ㅍ",
-    "Q":"ㄸ",
-    "R":"ㄲ",
+    "Q":"ㄲ",
+    "R":"ㅈ",
     "S":"ㅅ",
     "T":"ㅌ",
     "U":"ㅜ",
     "V":"ㅃ",
     "W":"ㅘ",
-    "X":"ㅇ",
+    "X":"ㄸ",
     "Y":"ㅟ",
-    "Z":"ㅆ"
+    "Z":"ㅙ", // find a better character for this
+
+    "TH":"ㅊ",
+    "NG":"ㅇ",
+    "IO":"ㅛ",
+    "EI":"ㅔ",
+    "IE":"ㅖ",
+    "IA":"ㅑ",
+    "OU":"ㅝ",
+    "AN":"ㅐ"
 };
 
-var vowels = ["A","E","I","O","U", "W","Y"];
-var nonTailConsonants = ["F","Q","V"];
+var vowels = ["A","E","I","O","U", "W","Y", "IO", "EI", "IE", "IA", "OU", "AN", "Z"];
+var nonTailConsonants = ["J","V","X"];
 
 var hangulJamo = {
   lead: undefined,
@@ -112,6 +121,17 @@ function engToHangul(engStr) {
   var uppercaseStr = engStr.toUpperCase();
   for (var i = 0, len = uppercaseStr.length; i < len; i++) {
     var c = uppercaseStr[i];
+
+    // Use bigram if it's valid
+    if (i < len-1) {
+      var c2 = uppercaseStr[i+1]; // i+1 < len
+      var bigram = c + c2;
+      if (bigram in engulmap) {
+        c = bigram; // Bigram exists. Use bigram.
+        i++; // Don't iterate over the second letter (c2)
+      }
+    }
+
     // If we have a non-alphabet, add the current hangul char if it exists, then add the non-alphabet
     if (!(c in engulmap)) {
       var hangul = hangulJamo.toHangul();
