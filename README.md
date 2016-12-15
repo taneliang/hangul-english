@@ -29,12 +29,12 @@ The character map is based on [this forum post by *Metax*][metax-forum-post]. I 
 | ㄱ    | g       |                                                                                          |
 | ㅎ    | h       |                                                                                          |
 | ㅉ    | j       | Cannot end a character. Rarely appears as the last letter in a word.                     |
-| ㅋ    | k       |                                                                                          |
+| ㅋ    | k       | Mapped to the same character as 'K' as there are no more free consonants for 'Q'.        |
 | ㄹ    | l       |                                                                                          |
 | ㅁ    | m       |                                                                                          |
 | ㄴ    | n       |                                                                                          |
 | ㅍ    | p       |                                                                                          |
-| ㄲ    | q       |                                                                                          |
+| ㅋ    | q       | Mapped to the same character as 'K' as there are no more free consonants for 'Q'.        |
 | ㅈ    | r       |                                                                                          |
 | ㅅ    | s       |                                                                                          |
 | ㅌ    | t       |                                                                                          |
