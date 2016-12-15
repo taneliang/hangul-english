@@ -137,8 +137,7 @@ Almost all of the 20 most common words can be represented by only 1 character.
 ## Todo
 
 1. Write code to convert Hangul-English back to English.
-2. Use a larger text input box.
-3. Beautify the web page.
+2. Beautify the web page.
 
 [metax-forum-post]: https://www.bzpower.com/board/topic/14553-linguists-corner-using-hangul-korean-alphabet-to-write-english/?p=732806
 [norvig-frequencies]: http://norvig.com/mayzner.html

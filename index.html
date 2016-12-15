@@ -4,16 +4,16 @@
     <title>Hangul-English</title>
     <script src='hangul.min.js' charset='utf-8'></script>
     <script src='index.js' charset='utf-8'></script>
+    <link rel="stylesheet" href="index.css" type="text/css">
   </head>
 
   <body>
     <h1>Hangul-English</h1>
     <p>Type English in Hangul.</p>
-    <p>Based on <a href="http://www.bzpower.com/board/topic/14553-linguists-corner-using-hangul-korean-alphabet-to-write-english/?p=732806">http://www.bzpower.com/board/topic/14553-linguists-corner-using-hangul-korean-alphabet-to-write-english/?p=732806</a></p>
-    <form>
-      English: <input type="text" id="englishbox" onkeyup="genhangul()"><br>
-      Hangul: <input type="text" id="hangulbox">
-    </form>
+    <p>Code and character map <a href="https://github.com/taneliang/hangul-english">are available on GitHub</a>.</p>
+    <textarea class="maininputbox" id="englishbox" rows="10" placeholder="English" onkeyup="genhangul()"></textarea>
+    <textarea class="maininputbox" id="hangulbox" rows="10" placeholder="엉릿흐"></textarea>
+    <footer><p>Copyright &copy; 2016 E-Liang Tan. All rights reserved.</footer>
   </body>
 
 </html>
