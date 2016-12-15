@@ -79,7 +79,7 @@ The character map is based on [this forum post by *Metax*][metax-forum-post]. I 
 
 Below are the 50 most common words in English according to [this post by Peter Norvig][norvig-frequencies] typed in Hangul-English.
 
-| Word  | PERCENT | Hangul-English |
+| Word  | Percent | Hangul-English |
 |-------|---------|--------|
 | the   | 7.14%   | 처      |
 | of    | 4.16%   | 옸      |
@@ -92,7 +92,7 @@ Below are the 50 most common words in English according to [this post by Peter N
 | for   | 0.88%   | 쏮      |
 | it    | 0.77%   | 잍      |
 | as    | 0.77%   | 앗      |
-| was   | 0.74%   | 왓      |
+| was   | 0.74%   | 와앗     |
 | with  | 0.70%   | 와잋     |
 | be    | 0.65%   | 버      |
 | by    | 0.63%   | 뷔      |
@@ -106,19 +106,19 @@ Below are the 50 most common words in English according to [this post by Peter N
 | his   | 0.49%   | 힛      |
 | from  | 0.47%   | 쓰좀     |
 | at    | 0.46%   | 앝      |
-| which | 0.42%   | 와히끟    |
+| which | 0.42%   | 와힊흐    |
 | but   | 0.38%   | 붙      |
 | have  | 0.37%   | 하뻐     |
-| an    | 0.37%   | 안      |
+| an    | 0.37%   | 애      |
 | had   | 0.35%   | 핟      |
 | they  | 0.33%   | 처위     |
 | you   | 0.31%   | 위워     |
 | were  | 0.31%   | 와어저    |
 | their | 0.29%   | 쳊      |
 | one   | 0.29%   | 오너     |
-| all   | 0.28%   | 아를     |
+| all   | 0.28%   | 알르     |
 | we    | 0.28%   | 와어     |
-| can   | 0.22%   | 깐      |
+| can   | 0.22%   | 깨      |
 | her   | 0.22%   | 헞      |
 | has   | 0.22%   | 핫      |
 | there | 0.22%   | 처저     |
@@ -127,7 +127,7 @@ Below are the 50 most common words in English according to [this post by Peter N
 | more  | 0.21%   | 모저     |
 | when  | 0.20%   | 와헌     |
 | will  | 0.20%   | 와일르    |
-| would | 0.20%   | 와워륻    |
+| would | 0.20%   | 와월드    |
 | who   | 0.20%   | 와호     |
 | so    | 0.19%   | 소      |
 | no    | 0.19%   | 노      |
