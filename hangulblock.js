@@ -1,11 +1,14 @@
+var vowels = ["A","E","I","O","U", "W","Y", "IO", "EI", "IE", "IA", "OU", "AN", "Z"];
+var nonFinalConsonants = ["J","V","X"];
+
 function HangulBlock(Object) {
-    this.lead = undefined;
+    this.initial = undefined;
     this.vowel = undefined;
-    this.tail = undefined;
+    this.final = undefined;
 };
 
 HangulBlock.prototype.canAddConsonant = function() {
-    return (this.lead == undefined || this.tail == undefined);
+    return (this.initial == undefined || this.final == undefined);
 };
 
 HangulBlock.prototype.canAddVowel = function() {
@@ -17,23 +20,26 @@ HangulBlock.prototype.canAddCharacter = function(engChar) {
     if (isVowel) {
         return this.canAddVowel();
     } else {
-        if (nonTailConsonants.indexOf(engChar) != -1) {
-            return (this.lead == undefined);
+        // Rule 6. you can not end a character with letters 'ㅉ', 'ㄸ' or 'ㅃ'.
+        if (nonFinalConsonants.indexOf(engChar) != -1) {
+            return (this.initial == undefined);
         }
         return this.canAddConsonant();
     }
 };
 
 HangulBlock.prototype.addConsonant = function(consonant) {
-    if (this.lead == undefined) {
-        this.lead = consonant;
-        // Rule 4: (This only applies to Hangul-English, this doesn't happen in normal Korean)  You can never start a character with the letter ㅇ (X),  This is because it is used as both a placeholder and the letter X.  If you want to start a word with the letter X, it must be it's own character, to let the reader know it's not a placeholder.   Like so:  Xeno = 으어노.
+    if (this.initial == undefined) {
+        this.initial = consonant;
+        // Rule 7. You can never start a block with "ng" ('ㅇ'), as it is used as both a placeholder and the bigram "ng".
         if (consonant == "ㅇ") {
+            // Rule 7. If you want to start a block with the bigram "ng", it must be followed with a "ㅡ".
             this.vowel = "ㅡ";
         }
-    } else if (this.tail == undefined) {
-        this.tail = consonant;
-        if (this.lead != undefined && this.vowel == undefined) {
+    } else if (this.final == undefined) {
+        this.final = consonant;
+        if (this.initial != undefined && this.vowel == undefined) {
+            // Rule 9. When there are 3 consonants in a row, there are some cases where you can stack consonants on top of each other separated by the placeholder vowel "ㅡ".
             this.vowel = "ㅡ";
         }
     } else {
@@ -45,26 +51,27 @@ HangulBlock.prototype.addVowel = function(vowel) {
     if (this.vowel == undefined) {
         this.vowel = vowel;
     }
-    // Rule 1: If a vowel starts a word, or has no consonant preceding it, put the placeholder character ㅇ in front of it.
-    if (this.lead == undefined) {
-        this.lead = "ㅇ";
+    // Rule 1. If a vowel starts a block, put the placeholder character 'ㅇ' in front of it.
+    if (this.initial == undefined) {
+        this.initial = "ㅇ";
     }
 };
 
 HangulBlock.prototype.toHangul = function() {
-    if (this.lead == undefined && this.vowel == undefined) {
+    if (this.initial == undefined && this.vowel == undefined) {
         return undefined;
     }
-    if (this.lead != undefined && this.vowel == undefined) {
+    if (this.initial != undefined && this.vowel == undefined) {
+        // Rule 2. If a block is only formed by a initial consonant, the placeholder vowel "ㅡ" must be appended to it.
         this.vowel = "ㅡ";
     }
-    return hangul.compose(this.lead, this.vowel, this.tail);
+    return hangul.compose(this.initial, this.vowel, this.final);
 };
 
 HangulBlock.prototype.reset = function() {
-    this.lead = undefined;
+    this.initial = undefined;
     this.vowel = undefined;
-    this.tail = undefined;
+    this.final = undefined;
 };
 
 HangulBlock.prototype.toHangulAndReset = function() {

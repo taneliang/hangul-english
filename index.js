@@ -36,9 +36,6 @@ var englishToHangulMap = {
     "AN":"ㅐ"
 };
 
-var vowels = ["A","E","I","O","U", "W","Y", "IO", "EI", "IE", "IA", "OU", "AN", "Z"];
-var nonTailConsonants = ["J","V","X"];
-
 function engToHangul(engStr) {
     var retStr = "";
     var uppercaseStr = engStr.toUpperCase();
@@ -47,6 +44,7 @@ function engToHangul(engStr) {
     for (var i = 0, len = uppercaseStr.length; i < len; i++) {
         var englishChar = uppercaseStr[i];
 
+        // Rule 3. Use bigrams preferentially over single letters.
         // Use bigram if it's valid
         if (i < len-1) {
             var englishChar2 = uppercaseStr[i+1]; // i+1 < len
@@ -72,11 +70,11 @@ function engToHangul(engStr) {
         var hangulChar = englishToHangulMap[englishChar];
 
         if (!hangulBlock.canAddCharacter(englishChar)) {
-            // Rule 7: If the third letter in a character is a consonant, and the next letter (The first of the next character) is a vowel, move the consonant from the first character to the second, so you don't have to use a placeholder.  Like so:    Instead of 탗오  (TAC - Placeholder+O), make it 타초  (TA - CO)
-            var tail = undefined;
-            if (isVowel && hangulBlock.tail != undefined) {
-                tail = hangulBlock.tail;
-                hangulBlock.tail = undefined;
+            // Rule 8. If a block's final consonant is followed by a vowel, move the consonant from the first block to the second block, so that the second block does not have a placeholder.
+            var final = undefined;
+            if (isVowel && hangulBlock.final != undefined && hangulBlock.final != "ㅇ") { // Rule 8. Do not do this if the consonant is a 'ㅇ', so that you do not contravene Rule 7.
+                final = hangulBlock.final;
+                hangulBlock.final = undefined;
             }
 
             var hangul = hangulBlock.toHangul();
@@ -85,8 +83,8 @@ function engToHangul(engStr) {
             }
             hangulBlock.reset();
 
-            // Rule 7
-            hangulBlock.lead = tail;
+            // Rule 8
+            hangulBlock.initial = final;
         }
 
         if (isVowel) {
