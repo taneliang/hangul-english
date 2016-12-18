@@ -1,9 +1,9 @@
 body {
-  font-family: Helvetica, Arial, sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
 }
 
 .maininputbox {
-  font-size: 18px; /* or larger */
-  height: 100%; /* or larger */
-  width: 48%; /* or larger */
+    font-size: 18px; /* or larger */
+    height: 100%; /* or larger */
+    width: 48%; /* or larger */
 }
